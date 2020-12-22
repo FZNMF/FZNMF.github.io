@@ -12,7 +12,7 @@ def mailsend(result):
     password = 'frkgnvgztgiadjai'
     sendername = username
     receiver = 'lymsfk@qq.com'
-    subject = '打卡通知'
+    subject = 'GitHub打卡通知'
     msg = MIMEText("<html><h1>{}</h1></html>".format(result), 'html', 'utf-8')
     msg['Subject'] = Header(subject, 'utf-8')
     smtp = smtplib.SMTP()
