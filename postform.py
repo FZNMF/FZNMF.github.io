@@ -24,7 +24,7 @@ def mailsend(result):
 
 
 def postform(posturl, headers, data):
-    print('开始发送'.encode("utf8").decode("utf8"))
+    print('begin sending')
     res = requests.post(posturl, headers=headers, data=data)
     return res
 
@@ -110,8 +110,6 @@ if __name__ == '__main__':
     }
     res = postform(posturl, headers, data)
     if res.status_code == 200:
-        print(mailsend('表单发送成功').encode("utf8").decode("utf8"))
+        mailsend('表单发送成功')
     else:
-        print(
-            mailsend('请求无法正常响应{}'.format(
-                res.status_code)).encode("utf8").decode("utf8"))
+        mailsend('请求无法正常响应{}'.format(res.status_code))
