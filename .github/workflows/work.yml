@@ -21,4 +21,6 @@ jobs:
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
     - name: daka
-      run: python postform.py
+      run: |
+        pip install requests
+        python postform.py
