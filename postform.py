@@ -1,6 +1,26 @@
 import requests
 import datetime
 import re
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
+def mailsend(result):
+    smtpserver = 'smtp.qq.com'
+    username = '1797901195@qq.com'
+    password = 'frkgnvgztgiadjai'
+    sendername = username
+    receiver = 'lymsfk@qq.com'
+    subject = '打卡通知'
+    msg = MIMEText("<html><h1>{}</h1></html>".format(result),'html','utf-8')
+    msg['Subject'] = Header(subject,'utf-8')
+    smtp = smtplib.SMTP()
+    smtp.connect(smtpserver)
+    smtp.login(username,password)
+    smtp.sendmail(sendername,receiver,msg.as_string())
+    smtp.quit()
+    return result
+
 
 def postform(posturl, headers, data):
     print('开始发送')
@@ -59,6 +79,6 @@ if __name__ == '__main__':
     }
     res = postform(posturl, headers, data)
     if res.status_code == 200:
-        print('表单发送成功')
+        print(mailsend('表单发送成功'))
     else:
-        print('请求无法正常响应{}'.format(res.status_code))
+        print(mailsend('请求无法正常响应{}'.format(res.status_code)))
